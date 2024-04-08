@@ -1,5 +1,5 @@
 <script>
 export default {
-  name: "dEpartMent"
+  name: "departMent"
 }
 </script>
