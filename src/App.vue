@@ -5,6 +5,7 @@
       <router-link to="/about">About</router-link>
     </nav>
     <router-view />
+    <el-button>你好呀</el-button>
   </div>
 </template>
 
