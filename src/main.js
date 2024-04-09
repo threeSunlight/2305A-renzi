@@ -4,9 +4,9 @@ import router from "./router"
 import store from "./store"
 
 Vue.config.productionTip = false
-import { Button } from "element-ui"
+import { input, Form, FormItem, Button } from "element-ui"
 Vue.config.productionTip = false
-Vue.use(Button)
+Vue.use(input).use(Form).use(FormItem).use(Button)
 new Vue({
   router,
   store,
