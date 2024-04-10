@@ -31,14 +31,18 @@
 </template>
 
 <script>
+// 引入api
 import { loginApi } from "../../api/api"
+import { setCookie } from "../../utils/auth"
 export default {
   data() {
     return {
+      // 表单数据
       ruleForm: {
         mobile: "13800000002",
         password: "888itcast.CN764%..."
       },
+      // 表单验证规则
       rules: {
         mobile: [{ required: true, message: "手机号不能为空", trigger: "blur" }],
         password: [{ required: true, message: "密码不能为空", trigger: "blur" }]
@@ -47,11 +51,19 @@ export default {
   },
 
   methods: {
+    // 提交登录
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          // 调用登录接口
           loginApi(this.ruleForm).then((res) => {
             console.log(res)
+            // 登录成功后，将token保存到cookie中
+            setCookie(res.data)
+            if (res.code === 10000) {
+              // 跳转到首页
+              this.$router.push("/")
+            }
           })
         }
       })

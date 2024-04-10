@@ -27,11 +27,13 @@ const router = new VueRouter({
 })
 
 //路由守卫登录
+//引入Cookie
+import { getCookie } from "../utils/auth"
 router.beforeEach((to, from, next) => {
   if (to.path == "/login") {
     next()
   } else {
-    if (localStorage.getItem("token")) {
+    if (getCookie()) {
       next()
     } else {
       next("/login")
