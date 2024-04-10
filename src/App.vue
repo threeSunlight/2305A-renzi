@@ -2,16 +2,14 @@
   <div id="app"></div>
 </template>
 <script>
-import http from "./utils/httpRequest"
 import { setToken } from "./utils/auth"
 export default {
   created() {
     const data = {
       mobile: 13800000002,
-      password: "888itcast.CN764%...."
+      password: "hm#qd@23!"
     }
-    http.post("/api/sys/login", data).then((res) => {
-      console.log(res, "*****")
+    this.$http.post(this.$http.adUrl("/sys/login"), data).then((res) => {
       setToken(res.data)
     })
   }
