@@ -4,10 +4,10 @@ import router from "./router"
 import store from "./store"
 import httpRequest from "./utils/httpRequest"
 Vue.prototype.$http = httpRequest
-import { Button, Select } from "element-ui"
+import ElementUI from "element-ui"
+import "element-ui/lib/theme-chalk/index.css"
 Vue.config.productionTip = false
-Vue.component(Button.name, Button)
-Vue.component(Select.name, Select)
+Vue.use(ElementUI)
 new Vue({
   router,
   store,
