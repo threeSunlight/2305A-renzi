@@ -4,9 +4,9 @@ import router from "./router"
 import store from "./store"
 
 Vue.config.productionTip = false
-import { Input, Form, FormItem, Button, Submenu, Menu } from "element-ui"
+import { Input, Form, FormItem, Button, Submenu, Menu, MenuItem, Calendar } from "element-ui"
 Vue.config.productionTip = false
-Vue.use(Input).use(Form).use(FormItem).use(Button).use(Submenu).use(Menu)
+Vue.use(Input).use(Form).use(FormItem).use(Button).use(Submenu).use(Menu).use(MenuItem).use(Calendar)
 
 new Vue({
   router,

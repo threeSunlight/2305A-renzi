@@ -6,3 +6,8 @@ const api = process.env.VUE_APP_BASE_API
 export const loginApi = (data) => {
   return axios.post(`${api}/sys/login`, data)
 }
+//获取用户基本资料
+export const profileApi = (data) => {
+  return axios.post(`${api}/sys/profile`, data)
+}
+//获取公告信息

@@ -1,13 +1,111 @@
 <template>
-  <div></div>
+  <div class="home">
+    <!--   侧边栏 -->
+    <aside v-if="$route.path != '/login'" :style="flag ? 'width: 64px' : 'width: 200px'">
+      <NavBar></NavBar>
+    </aside>
+    <!-- 右边内容区域 -->
+    <div class="content">
+      <!--  头部 -->
+      <header v-if="$route.path != '/login'">
+        <SiderBar></SiderBar>
+      </header>
+      <!--   内容 -->
+      <article>
+        <!-- 头部身份信息 -->
+        <div class="article-top">
+          <ShenFen></ShenFen>
+        </div>
+        <!-- 内容左侧区域 -->
+        <div class="article-left">
+          <!--工作日历组件 -->
+          <RiLi></RiLi>
+          <!-- 公告 -->
+          <GongGao></GongGao>
+        </div>
+        <!-- 内容左侧区域 -->
+        <div class="article-right">000</div>
+      </article>
+    </div>
+  </div>
 </template>
 
 <script>
+import NavBar from "../layout/common/NavBar.vue"
+import SiderBar from "../layout/common/SiderBar.vue"
+import RiLi from "../components/RiLi.vue"
+import ShenFen from "../components/ShenFen.vue"
+import GongGao from "../components/GongGao.vue"
+
+import { EventBus } from "@/eventbus"
+
 export default {
+  components: {
+    NavBar,
+    SiderBar,
+    RiLi,
+    ShenFen,
+    GongGao
+  },
   data() {
-    return {}
+    return {
+      flag: false
+    }
+  },
+  created() {
+    EventBus.$on("Collapse", (flag) => {
+      this.flag = flag
+    })
   }
 }
 </script>
 
-<style></style>
+<style lang="scss">
+* {
+  margin: 0;
+  padding: 0;
+}
+.home {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100vh;
+  aside {
+    height: 100%;
+    background-color: #4a7afb;
+    transition: all 0.3s;
+  }
+
+  .content {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    header {
+      width: 100%;
+      height: 40px;
+      background-color: #4979fa;
+    }
+    article {
+      width: 100%;
+      height: calc(100vh - 40px);
+      overflow-y: auto;
+      background-color: #edeff2;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .article-top {
+        width: 100%;
+      }
+      .article-left {
+        width: 60%;
+      }
+      .article-right {
+        width: 38%;
+      }
+    }
+  }
+}
+</style>

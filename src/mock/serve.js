@@ -8,6 +8,8 @@ let app = express() // 创建一个express实例
 app.use("/sys/login", (req, res) => {
   res.json(Mock.mock(loginData))
 })
+//左侧菜单接口
+
 //设置监听接口
 app.listen(8888, () => {
   console.log("监听端口 8888")
