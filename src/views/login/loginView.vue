@@ -58,11 +58,12 @@ export default {
           // 调用登录接口
           loginApi(this.ruleForm).then((res) => {
             console.log(res)
-            // 登录成功后，将token保存到cookie中
-            setCookie(res.data)
+
             if (res.code === 10000) {
+              // 登录成功后，将token保存到cookie中
+              setCookie(res.data)
               // 跳转到首页
-              this.$router.push("/")
+              this.$router.replace("/")
             }
           })
         }
