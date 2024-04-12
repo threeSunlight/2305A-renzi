@@ -73,15 +73,15 @@ http.interceptors.response.use(
   },
   (error) => {
     let tilte = ""
-    let message = error.message
+    let message = error.response.data
     console.log(error, "71")
     // 因为状态码返回有两种情况,一种是正常的code码,401,200,302
     // 还有一种是非正常的状态码,如" 没有或者返回英文字母
     // 获取返回报错的状态码:  error.code
     // 获取返回的报错信息: error.message
     // 在这封装状态码
-    if (error.code) {
-      switch (error.code) {
+    if (error.response.status) {
+      switch (error.response.status) {
         case 401:
           tilte = "资源未授权"
           break
@@ -134,6 +134,7 @@ http.interceptors.response.use(
 
 /**动态拼接代理标识 */
 http.adUrl = (url) => {
+  console.log(process.env.VUE_APP_BASE_API, "process.env.VUE_APP_BASE_API")
   return process.env.VUE_APP_BASE_API + url
 }
 
