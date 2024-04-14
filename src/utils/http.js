@@ -3,7 +3,6 @@ import axios from "axios"
 import { getCookie, removeCookie } from "./auth"
 /**引入message弹框 */
 import { MessageBox } from "element-ui"
-
 const instance = axios.create({
   // 设置请求的基础地址
   baseURL: "/",
@@ -37,7 +36,7 @@ instance.interceptors.response.use(
     // 对响应数据做点什么
 
     //封装401过期处理
-    if (response.data.code === 10002 && response.status == 200) {
+    if (response.data.code === 10002 && response.status == 401) {
       //清除token
       removeCookie()
       //跳转到登录页
@@ -57,7 +56,7 @@ instance.interceptors.response.use(
     // 获取返回的报错信息: error.message
     // 在这封装状态码
     if (error.response.status) {
-      switch (error.code) {
+      switch (error.response.status) {
         case 401:
           tilte = "资源未授权"
           break

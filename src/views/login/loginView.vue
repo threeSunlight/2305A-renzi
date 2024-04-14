@@ -64,6 +64,8 @@ export default {
               setCookie(res.data)
               // 跳转到首页
               this.$router.replace("/")
+            } else {
+              alert(res.message)
             }
           })
         }

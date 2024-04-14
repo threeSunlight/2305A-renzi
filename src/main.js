@@ -4,10 +4,45 @@ import router from "./router"
 import store from "./store"
 
 Vue.config.productionTip = false
-import { Input, Form, FormItem, Button, Submenu, Menu, MenuItem, Calendar } from "element-ui"
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  Input,
+  Form,
+  FormItem,
+  Button,
+  Submenu,
+  Menu,
+  MenuItem,
+  Calendar,
+  Tree,
+  Dialog,
+  Select,
+  Option,
+  Table,
+  TableColumn,
+  Pagination
+} from "element-ui"
 Vue.config.productionTip = false
-Vue.use(Input).use(Form).use(FormItem).use(Button).use(Submenu).use(Menu).use(MenuItem).use(Calendar)
-
+Vue.use(DropdownItem)
+  .use(DropdownMenu)
+  .use(Dropdown)
+  .use(Input)
+  .use(Form)
+  .use(FormItem)
+  .use(Button)
+  .use(Submenu)
+  .use(Menu)
+  .use(MenuItem)
+  .use(Calendar)
+  .use(Tree)
+  .use(Dialog)
+  .use(Select)
+  .use(Option)
+  .use(Table)
+  .use(TableColumn)
+  .use(Pagination)
 new Vue({
   router,
   store,

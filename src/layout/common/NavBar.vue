@@ -4,22 +4,23 @@
       <img src="../../assets/ihrm.png" alt="" style="width: 80%; height: 80%" />
     </div>
     <el-menu
-      default-active="1"
+      default-active="/shouye"
       class="el-menu-vertical-demo"
       background-color="#4979fa"
       text-color="#fff"
       active-text-color="#63b9fe"
       :collapse="flag"
+      router
     >
-      <el-menu-item index="1">
+      <el-menu-item index="/shouye">
         <i class="el-icon-menu" color="#fff"></i>
         <span slot="title">首页</span>
       </el-menu-item>
-      <el-menu-item index="9">
+      <el-menu-item index="/zuzhi">
         <i class="el-icon-menu"></i>
         <span slot="title">组织架构</span>
       </el-menu-item>
-      <el-menu-item index="2">
+      <el-menu-item index="YuanGong">
         <i class="el-icon-menu"></i>
         <span slot="title">员工</span>
       </el-menu-item>

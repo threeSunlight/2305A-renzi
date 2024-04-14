@@ -10,21 +10,10 @@
       <header v-if="$route.path != '/login'">
         <SiderBar></SiderBar>
       </header>
+
       <!--   内容 -->
       <article>
-        <!-- 头部身份信息 -->
-        <div class="article-top">
-          <ShenFen></ShenFen>
-        </div>
-        <!-- 内容左侧区域 -->
-        <div class="article-left">
-          <!--工作日历组件 -->
-          <RiLi></RiLi>
-          <!-- 公告 -->
-          <GongGao></GongGao>
-        </div>
-        <!-- 内容左侧区域 -->
-        <div class="article-right">000</div>
+        <router-view></router-view>
       </article>
     </div>
   </div>
@@ -33,19 +22,12 @@
 <script>
 import NavBar from "../layout/common/NavBar.vue"
 import SiderBar from "../layout/common/SiderBar.vue"
-import RiLi from "../components/RiLi.vue"
-import ShenFen from "../components/ShenFen.vue"
-import GongGao from "../components/GongGao.vue"
-
 import { EventBus } from "@/eventbus"
 
 export default {
   components: {
     NavBar,
-    SiderBar,
-    RiLi,
-    ShenFen,
-    GongGao
+    SiderBar
   },
   data() {
     return {
@@ -93,18 +75,6 @@ export default {
       background-color: #edeff2;
       padding: 20px;
       box-sizing: border-box;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      .article-top {
-        width: 100%;
-      }
-      .article-left {
-        width: 60%;
-      }
-      .article-right {
-        width: 38%;
-      }
     }
   }
 }

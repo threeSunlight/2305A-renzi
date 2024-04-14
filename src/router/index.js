@@ -8,12 +8,25 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: HomeView
-  },
-  {
-    path: "/about",
-    name: "about",
-    component: () => import("../views/AboutView.vue")
+    redirect: "/shouye", // 重定向:重新指向其它path,会改变网址
+    component: HomeView,
+    children: [
+      {
+        path: "/shouye",
+        name: "shouye",
+        component: () => import("../views/ShouYe.vue")
+      },
+      {
+        path: "/zuzhi",
+        name: "zuzhi",
+        component: () => import("../views/ZuZhi.vue")
+      },
+      {
+        path: "/yuangong",
+        name: "yuangong",
+        component: () => import("../views/YuanGong.vue")
+      }
+    ]
   },
   {
     path: "/login",
