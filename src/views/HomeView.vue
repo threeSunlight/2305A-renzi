@@ -22,6 +22,7 @@
 <script>
 import NavBar from "../layout/common/NavBar.vue"
 import SiderBar from "../layout/common/SiderBar.vue"
+// import a from "../components/theme.vue"
 import { EventBus } from "@/eventbus"
 
 export default {

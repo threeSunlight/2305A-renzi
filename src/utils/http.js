@@ -34,14 +34,6 @@ instance.interceptors.response.use(
   function (response) {
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
-
-    //封装401过期处理
-    if (response.data.code === 10002 && response.status == 401) {
-      //清除token
-      removeCookie()
-      //跳转到登录页
-      window.location.href = "/login"
-    }
     return response.data
   },
   function (error) {
@@ -49,7 +41,14 @@ instance.interceptors.response.use(
     // 对响应错误做点什么
     let tilte = ""
     let message = error.response.data
-    console.log(error, "71")
+    //封装401过期处理
+    if (error.response.data.code == 10002 && error.response.status == 401) {
+      //清除token
+      removeCookie()
+      //跳转到登录页
+      window.location.href = "/login"
+    }
+
     // 因为状态码返回有两种情况,一种是正常的code码,401,200,302
     // 还有一种是非正常的状态码,如" 没有或者返回英文字母
     // 获取返回报错的状态码:  error.code

@@ -22,10 +22,10 @@
       </div>
 
       <el-tree :data="arr" node-key="id" default-expand-all :props="{ label: 'name' }">
-        <span class="custom-tree-node" slot-scope="{ node, data }">
+        <span class="custom-tree-node" slot-scope="{ data }">
           <span class="left">
             <i class="el-icon-s-custom"></i>
-            {{ data.name }}{{ node.aaaaaaa }}
+            {{ data.name }}
           </span>
           <span class="right">
             <span> {{ data.manager }} </span>

@@ -8,13 +8,19 @@
       <span>体验版</span>
     </div>
 
-    <div class="right">00</div>
+    <div class="right">
+      <ThemeColor></ThemeColor>
+    </div>
   </div>
 </template>
 
 <script>
 import { EventBus } from "@/eventbus"
+import ThemeColor from "../../components/ThemeColor"
 export default {
+  components: {
+    ThemeColor
+  },
   data() {
     return {
       flag: false

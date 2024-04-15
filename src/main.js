@@ -22,7 +22,8 @@ import {
   Option,
   Table,
   TableColumn,
-  Pagination
+  Pagination,
+  ColorPicker
 } from "element-ui"
 Vue.config.productionTip = false
 Vue.use(DropdownItem)
@@ -43,6 +44,8 @@ Vue.use(DropdownItem)
   .use(Table)
   .use(TableColumn)
   .use(Pagination)
+  .use(ColorPicker)
+
 new Vue({
   router,
   store,

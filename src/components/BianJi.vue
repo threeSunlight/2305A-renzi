@@ -12,7 +12,7 @@
 
         <el-form-item label="部门负责人" label-width="100px">
           <el-select v-model="form.manager" placeholder="请选择">
-            <el-option v-for="item in list" :key="item.id" :label="item.username" :value="item.id"></el-option>
+            <el-option v-for="item in list" :key="item.id" :label="item.username" :value="item.username"></el-option>
           </el-select>
         </el-form-item>
 
@@ -51,7 +51,7 @@ export default {
 
     add() {
       //添加
-      if (this.id) {
+      if (this.detail == {}) {
         addbumenApi({ pid: this.id, ...this.form }).then((res) => {
           if (res.code == 10000) {
             Message({
