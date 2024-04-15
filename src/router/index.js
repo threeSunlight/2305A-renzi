@@ -25,6 +25,11 @@ const routes = [
         path: "/yuangong",
         name: "yuangong",
         component: () => import("../views/YuanGong.vue")
+      },
+      {
+        path: "/gongsishezhi",
+        name: "gongsishezhi",
+        component: () => import("../views/GongSiSheZhi.vue")
       }
     ]
   },

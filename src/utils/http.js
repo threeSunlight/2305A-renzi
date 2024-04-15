@@ -3,6 +3,7 @@ import axios from "axios"
 import { getCookie, removeCookie } from "./auth"
 /**引入message弹框 */
 import { MessageBox } from "element-ui"
+
 const instance = axios.create({
   // 设置请求的基础地址
   baseURL: "/",
@@ -36,6 +37,7 @@ instance.interceptors.response.use(
     // 对响应数据做点什么
     return response.data
   },
+
   function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么

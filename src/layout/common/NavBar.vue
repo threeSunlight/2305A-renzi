@@ -4,7 +4,7 @@
       <img src="../../assets/ihrm.png" alt="" style="width: 80%; height: 80%" />
     </div>
     <el-menu
-      default-active="/shouye"
+      :default-active="$route.path"
       class="el-menu-vertical-demo"
       background-color="#4979fa"
       text-color="#fff"
@@ -20,11 +20,11 @@
         <i class="el-icon-menu"></i>
         <span slot="title">组织架构</span>
       </el-menu-item>
-      <el-menu-item index="YuanGong">
+      <el-menu-item index="/yuangong">
         <i class="el-icon-menu"></i>
         <span slot="title">员工</span>
       </el-menu-item>
-      <el-menu-item index="3">
+      <el-menu-item index="/gongsishezhi">
         <i class="el-icon-setting"></i>
         <span slot="title">公司设置</span>
       </el-menu-item>

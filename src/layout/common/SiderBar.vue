@@ -9,6 +9,7 @@
     </div>
 
     <div class="right">
+      <!-- 修改主题组件 -->
       <ThemeColor></ThemeColor>
     </div>
   </div>

@@ -13,7 +13,13 @@
 
       <!--   内容 -->
       <article>
-        <router-view></router-view>
+        <div style="width: 100%">
+          <router-view></router-view>
+        </div>
+
+        <div style="width: 100%; text-align: center; color: #aaa; margin-top: 20px">
+          copyright © 2018 IHRM 系统 版权所有
+        </div>
       </article>
     </div>
   </div>

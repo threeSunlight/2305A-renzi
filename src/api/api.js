@@ -30,7 +30,20 @@ export const delbumenApi = (data) => {
 export const editbumenApi = (data) => {
   return axios.put(`${api}/company/department${data.id}`, data)
 }
-//获取角色列表
+//获取员工页面列表
 export const userlistApi = (data) => {
   return axios.get(`${api}/sys/user?page=${data.page}&size=${data.size}`)
+}
+
+//获取公司设置页面角色管理列表
+export const rolelistApi = (data) => {
+  return axios.get(`${api}/sys/role?page=${data.page}&pagesize=${data.pagesize}`)
+}
+//添加角色
+export const addroleApi = (data) => {
+  return axios.post(`${api}/sys/role`, data)
+}
+//获取公司信息
+export const companyApi = () => {
+  return axios.get(`${api}/company/1?id=1`)
 }
