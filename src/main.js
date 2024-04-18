@@ -2,6 +2,18 @@ import Vue from "vue"
 import App from "./App.vue"
 import router from "./router"
 import store from "./store"
+import "@/icons"
+
+// import http from "./utils/http"
+// Vue.prototype.$http = http
+
+//引入element处理语言
+import ElementLocale from "element-ui/lib/locale"
+// 引入我们实例化后vue-i18
+import i18n from "./language/index"
+//将我们实例化的vue-i8编写公共方法,绑定要elementui语言上
+ElementLocale.i18n((key, value) => i18n.t(key, value))
+// 把i18注册到Vue实例上
 
 Vue.config.productionTip = false
 import {
@@ -23,7 +35,13 @@ import {
   Table,
   TableColumn,
   Pagination,
-  ColorPicker
+  ColorPicker,
+  Switch,
+  Badge,
+  Checkbox,
+  CheckboxGroup,
+  Radio,
+  RadioGroup
 } from "element-ui"
 Vue.config.productionTip = false
 Vue.use(DropdownItem)
@@ -45,9 +63,16 @@ Vue.use(DropdownItem)
   .use(TableColumn)
   .use(Pagination)
   .use(ColorPicker)
+  .use(Switch)
+  .use(Badge)
+  .use(Checkbox)
+  .use(CheckboxGroup)
+  .use(Radio)
+  .use(RadioGroup)
 
 new Vue({
   router,
   store,
+  i18n,
   render: (h) => h(App)
 }).$mount("#app")

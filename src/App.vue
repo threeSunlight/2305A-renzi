@@ -10,4 +10,9 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss">
+/* nprogress进度条自定义颜色 */
+#nprogress .bar {
+  background: red !important;
+}
+</style>	

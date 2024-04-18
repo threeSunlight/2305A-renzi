@@ -3,6 +3,11 @@ import axios from "axios"
 import { getCookie, removeCookie } from "./auth"
 /**引入message弹框 */
 import { MessageBox } from "element-ui"
+//nprogress进度条
+import NProgress from "nprogress"
+import "nprogress/nprogress.css"
+//关闭螺旋加载
+NProgress.configure({ showSpinner: false })
 
 const instance = axios.create({
   // 设置请求的基础地址
@@ -22,6 +27,7 @@ instance.interceptors.request.use(
   function (config) {
     // 在发送请求之前做些什么
     config.headers.Authorization = "Bearer" + " " + getCookie()
+    NProgress.start()
     return config
   },
   function (error) {
@@ -35,6 +41,7 @@ instance.interceptors.response.use(
   function (response) {
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
+    NProgress.done()
     return response.data
   },
 
@@ -108,5 +115,10 @@ instance.interceptors.response.use(
     return Promise.reject(error)
   }
 )
+
+/**动态拼接代理标识 */
+// instance.adUrl = (url) => {
+//   return process.env.VUE_APP_BASE_API + url
+// }
 
 export default instance

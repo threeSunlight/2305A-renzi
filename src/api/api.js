@@ -47,3 +47,20 @@ export const addroleApi = (data) => {
 export const companyApi = () => {
   return axios.get(`${api}/company/1?id=1`)
 }
+//获取权限设置菜单
+export const quanxianApi = () => {
+  return axios.get(`${api}/sys/permission?type=1&pid=0`)
+}
+//添加菜单
+export const addquanxianApi = (data) => {
+  return axios.post(`${api}/sys/permission`, data)
+}
+
+//获取考勤部门
+export const kaoqinbumenApi = () => {
+  return axios.get(`${api}/company/department`)
+}
+//获取考勤页面员工信息
+export const kaoqinuserApi = (data) => {
+  return axios.get(`${api}/attendances?page=${data.page}&pagesize=${data.pagesize}`)
+}

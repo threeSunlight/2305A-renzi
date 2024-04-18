@@ -9,6 +9,12 @@
     </div>
 
     <div class="right">
+      <!-- 全局黑白主题 -->
+      <el-switch v-model="value" active-color="#2c2c2c" inactive-color="#fff" @change="Elswitch"> </el-switch>&emsp;
+      <!-- 全屏 -->
+      <svg-icon :icon-class="screenfullflag ? 'suoxiao' : 'fangda'" @click="fangdasuoxiao"></svg-icon>&emsp;
+      <!-- 国际化组件 -->
+      <gjh></gjh>&emsp;
       <!-- 修改主题组件 -->
       <ThemeColor></ThemeColor>
     </div>
@@ -18,13 +24,20 @@
 <script>
 import { EventBus } from "@/eventbus"
 import ThemeColor from "../../components/ThemeColor"
+import gjh from "../../components/lang/indexView"
+import screenfull from "screenfull"
+
 export default {
   components: {
-    ThemeColor
+    ThemeColor,
+    gjh
   },
   data() {
     return {
-      flag: false
+      flag: false,
+      screenfullflag: false,
+      value: false,
+      theme: "light" // 初始主题为白天模式
     }
   },
   methods: {
@@ -32,6 +45,21 @@ export default {
     Collapse() {
       this.flag = !this.flag
       EventBus.$emit("Collapse", this.flag)
+    },
+    //全屏
+    fangdasuoxiao() {
+      screenfull.toggle()
+      if (screenfull.isEnabled) {
+        screenfull.on("change", () => {
+          if (screenfull.isEnabled) {
+            this.screenfullflag = screenfull.isFullscreen
+          }
+        })
+      }
+    },
+
+    //全局黑白主题
+    Elswitch() {
     }
   }
 }

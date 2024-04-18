@@ -14,7 +14,7 @@
     >
       <el-menu-item index="/shouye">
         <i class="el-icon-menu" color="#fff"></i>
-        <span slot="title">首页</span>
+        <span slot="title">{{ $t("route.dashboard") }}</span>
       </el-menu-item>
       <el-menu-item index="/zuzhi">
         <i class="el-icon-menu"></i>
@@ -28,7 +28,7 @@
         <i class="el-icon-setting"></i>
         <span slot="title">公司设置</span>
       </el-menu-item>
-      <el-menu-item index="4">
+      <el-menu-item index="/quanxian">
         <i class="el-icon-setting"></i>
         <span slot="title">权限设置</span>
       </el-menu-item>
@@ -36,7 +36,7 @@
         <i class="el-icon-menu"></i>
         <span slot="title">社保</span>
       </el-menu-item>
-      <el-menu-item index="6">
+      <el-menu-item index="/kaoqin">
         <i class="el-icon-menu"></i>
         <span slot="title">考勤</span>
       </el-menu-item>

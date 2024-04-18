@@ -12,7 +12,9 @@
       <GongGao></GongGao>
     </div>
     <!-- 内容右侧区域 -->
-    <div class="article-right">0</div>
+    <div class="article-right">
+      {{ $t("test.name") }}
+    </div>
   </div>
 </template>
 

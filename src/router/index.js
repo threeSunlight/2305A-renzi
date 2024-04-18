@@ -30,6 +30,16 @@ const routes = [
         path: "/gongsishezhi",
         name: "gongsishezhi",
         component: () => import("../views/GongSiSheZhi.vue")
+      },
+      {
+        path: "/quanxian",
+        name: "quanxian",
+        component: () => import("../views/QuanXian.vue")
+      },
+			{
+        path: "/kaoqin",
+        name: "kaoqin",
+        component: () => import("../views/KaoQin.vue")
       }
     ]
   },

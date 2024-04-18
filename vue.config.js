@@ -1,6 +1,11 @@
 const { defineConfig } = require("@vue/cli-service")
 console.log(process.env.VUE_APP_BASE_API)
-console.log(process.env.VUE_APP_BASE_URL, "---")
+console.log(process.env.VUE_APP_BASE_URL)
+
+const path = require("path")
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
 module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false,
@@ -13,7 +18,7 @@ module.exports = defineConfig({
   //用来配置跨域,启动项目端口号,启动项目是否直接打开浏览器,以及http配置
   devServer: {
     // 端口号
-    port: "5137",
+    port: "5173",
     //启动项目直接打开浏览器
     open: true,
     // 开发运行时域名，设置成'0.0.0.0',在同一个局域网下，如果你的项目在运行，同时可以通过你的http://ip:port/...访问你的项目
@@ -45,5 +50,22 @@ module.exports = defineConfig({
         }
       }
     }
+  },
+  chainWebpack(config) {
+    // when there are many pages, it will cause too many meaningless requests
+    config.plugins.delete("prefetch")
+    // set svg-sprite-loader
+    config.module.rule("svg").exclude.add(resolve("src/icons")).end()
+    config.module
+      .rule("icons")
+      .test(/\.svg$/)
+      .include.add(resolve("src/icons"))
+      .end()
+      .use("svg-sprite-loader")
+      .loader("svg-sprite-loader")
+      .options({
+        symbolId: "icon-[name]"
+      })
+      .end()
   }
 })

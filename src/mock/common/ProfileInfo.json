@@ -1,0 +1,35 @@
+{
+	"success": true,
+	"code": 10000,
+	"message": "操作成功！",
+	"data": {
+			"userId": "1063705989926227968",
+			"mobile": "13800000002",
+			"username": "管理员",
+			"company": "传智播客",
+			"companyId": "1",
+			"roles": {
+					"apis": [
+							"API-USER-DELETE"
+					],
+					"menus": [
+							null,
+							"settings",
+							"social_securitys",
+							"permissions",
+							"approvals",
+							"departments",
+							"salarys",
+							"employees",
+							"user12345",
+							"attendances"
+					],
+					"points": [
+							"point-user-delete",
+							"POINT-USER-UPDATE",
+							"POINT-USER-ADD"
+					]
+			},
+			"authCacheKey": null
+	}
+}

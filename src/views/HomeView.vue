@@ -5,7 +5,7 @@
       <NavBar></NavBar>
     </aside>
     <!-- 右边内容区域 -->
-    <div class="content">
+    <div class="content" :style="flag ? 'width:calc(100vw - 64px)' : 'width:calc(100vw - 200px)'">
       <!--  头部 -->
       <header v-if="$route.path != '/login'">
         <SiderBar></SiderBar>
@@ -66,7 +66,6 @@ export default {
   }
 
   .content {
-    flex: 1;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
