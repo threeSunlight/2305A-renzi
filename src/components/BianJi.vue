@@ -51,7 +51,8 @@ export default {
 
     add() {
       //添加
-      if (this.detail == {}) {
+      console.log(this.detail)
+      if (!this.detail.id) {
         addbumenApi({ pid: this.id, ...this.form }).then((res) => {
           if (res.code == 10000) {
             Message({

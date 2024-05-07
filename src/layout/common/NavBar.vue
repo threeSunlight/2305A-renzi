@@ -6,8 +6,8 @@
     <el-menu
       :default-active="$route.path"
       class="el-menu-vertical-demo"
-      background-color="#4979fa"
       text-color="#fff"
+      background-color="#4a7afb"
       active-text-color="#63b9fe"
       :collapse="flag"
       router
@@ -40,7 +40,7 @@
         <i class="el-icon-menu"></i>
         <span slot="title">考勤</span>
       </el-menu-item>
-      <el-menu-item index="7">
+      <el-menu-item index="/gongzi">
         <i class="el-icon-menu"></i>
         <span slot="title">工资</span>
       </el-menu-item>

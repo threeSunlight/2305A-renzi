@@ -10,7 +10,7 @@
 
     <div class="right">
       <!-- 全局黑白主题 -->
-      <el-switch v-model="value" active-color="#2c2c2c" inactive-color="#fff" @change="Elswitch"> </el-switch>&emsp;
+      <el-switch v-model="value" active-color="#2c2c2c" inactive-color="#ccc" @change="Elswitch"> </el-switch>&emsp;
       <!-- 全屏 -->
       <svg-icon :icon-class="screenfullflag ? 'suoxiao' : 'fangda'" @click="fangdasuoxiao"></svg-icon>&emsp;
       <!-- 国际化组件 -->
@@ -59,8 +59,7 @@ export default {
     },
 
     //全局黑白主题
-    Elswitch() {
-    }
+    Elswitch() {}
   }
 }
 </script>

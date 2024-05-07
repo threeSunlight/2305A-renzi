@@ -62,6 +62,8 @@
 
 <script>
 import { kaoqinbumenApi, kaoqinuserApi } from "../api/api"
+import { Message } from "element-ui"
+
 export default {
   data() {
     return {
@@ -79,8 +81,12 @@ export default {
     userlist() {
       kaoqinuserApi(this.page).then((res) => {
         // console.log(res)
-        this.tableData = res.data.data.rows
-        this.total = res.data.data.total
+        if (res.code == 10000) {
+          this.tableData = res.data.data.rows
+          this.total = res.data.data.total
+        } else {
+          Message.error(res.message)
+        }
       })
     }
   },

@@ -64,3 +64,12 @@ export const kaoqinbumenApi = () => {
 export const kaoqinuserApi = (data) => {
   return axios.get(`${api}/attendances?page=${data.page}&pagesize=${data.pagesize}`)
 }
+
+//获取工资页面部门
+export const gongzibumenApi = () => {
+  return axios.get(`${api}/company/department`)
+}
+//获取工资页面员工信息
+export const gongziuserApi = (data) => {
+  return axios.post(`${api}/salarys/list`, data)
+}

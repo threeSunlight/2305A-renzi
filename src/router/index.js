@@ -36,10 +36,15 @@ const routes = [
         name: "quanxian",
         component: () => import("../views/QuanXian.vue")
       },
-			{
+      {
         path: "/kaoqin",
         name: "kaoqin",
         component: () => import("../views/KaoQin.vue")
+      },
+      {
+        path: "/gongzi",
+        name: "gongzi",
+        component: () => import("../views/GongZi.vue")
       }
     ]
   },

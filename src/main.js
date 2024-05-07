@@ -41,7 +41,8 @@ import {
   Checkbox,
   CheckboxGroup,
   Radio,
-  RadioGroup
+  RadioGroup,
+	Tag
 } from "element-ui"
 Vue.config.productionTip = false
 Vue.use(DropdownItem)
@@ -69,6 +70,7 @@ Vue.use(DropdownItem)
   .use(CheckboxGroup)
   .use(Radio)
   .use(RadioGroup)
+	.use(Tag)
 
 new Vue({
   router,

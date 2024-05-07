@@ -38,11 +38,11 @@ const s2ab = (s) => {
   if (typeof ArrayBuffer !== "undefined") {
     buf = new ArrayBuffer(s.length)
     var view = new Uint8Array(buf)
-    for (var index = 0; index != s.length; ++index) view[index] = s.charCodeAt(index) & 0xff
+    for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff
     return buf
   } else {
     buf = new Array(s.length)
-    for (var index = 0; index != s.length; ++index) buf[index] = s.charCodeAt(index) & 0xff
+    for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xff
     return buf
   }
 }
