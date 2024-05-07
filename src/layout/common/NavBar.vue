@@ -12,41 +12,9 @@
       :collapse="flag"
       router
     >
-      <el-menu-item index="/shouye">
-        <i class="el-icon-menu" color="#fff"></i>
-        <span slot="title">{{ $t("route.dashboard") }}</span>
-      </el-menu-item>
-      <el-menu-item index="/zuzhi">
-        <i class="el-icon-menu"></i>
-        <span slot="title">组织架构</span>
-      </el-menu-item>
-      <el-menu-item index="/yuangong">
-        <i class="el-icon-menu"></i>
-        <span slot="title">员工</span>
-      </el-menu-item>
-      <el-menu-item index="/gongsishezhi">
-        <i class="el-icon-setting"></i>
-        <span slot="title">公司设置</span>
-      </el-menu-item>
-      <el-menu-item index="/quanxian">
-        <i class="el-icon-setting"></i>
-        <span slot="title">权限设置</span>
-      </el-menu-item>
-      <el-menu-item index="5">
-        <i class="el-icon-menu"></i>
-        <span slot="title">社保</span>
-      </el-menu-item>
-      <el-menu-item index="/kaoqin">
-        <i class="el-icon-menu"></i>
-        <span slot="title">考勤</span>
-      </el-menu-item>
-      <el-menu-item index="/gongzi">
-        <i class="el-icon-menu"></i>
-        <span slot="title">工资</span>
-      </el-menu-item>
-      <el-menu-item index="8">
-        <i class="el-icon-menu"></i>
-        <span slot="title">审批</span>
+      <el-menu-item v-for="item in mentList"  :index="item.path">
+        <i :class="item.meta.icon" color="#fff"></i>
+        <span slot="title">{{item.meta.title  }}</span>
       </el-menu-item>
     </el-menu>
   </div>
@@ -54,15 +22,20 @@
 
 <script>
 import { EventBus } from "@/eventbus"
+import {routes} from '@/router'
 export default {
   data() {
     return {
-      flag: false
+      flag: false,
+			mentList: []
     }
   },
 
   methods: {},
   created() {
+
+		this.mentList = [...routes[0].children]
+
     EventBus.$on("Collapse", (flag) => {
       this.flag = flag
     })
