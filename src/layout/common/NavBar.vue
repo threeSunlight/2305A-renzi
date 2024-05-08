@@ -23,6 +23,7 @@
 <script>
 import { EventBus } from "@/eventbus"
 import {routes} from '@/router'
+import router from '@/router'
 export default {
   data() {
     return {
@@ -33,7 +34,10 @@ export default {
 
   methods: {},
   created() {
-
+		console.log("&&&&&&&&&&&&&&&&&&&&&&&&");
+		console.log(router);
+		console.log(routes);
+		console.log("&&&&&&&&&&&&&&&&&&&&&&&&");
 		this.mentList = [...routes[0].children]
 
     EventBus.$on("Collapse", (flag) => {

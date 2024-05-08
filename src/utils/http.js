@@ -5,6 +5,8 @@ import { getCookie, removeCookie } from "./auth"
 import { MessageBox } from "element-ui"
 //nprogress进度条
 import NProgress from "nprogress"
+
+import router from '@/router'
 import "nprogress/nprogress.css"
 //关闭螺旋加载
 NProgress.configure({ showSpinner: false })
@@ -55,7 +57,8 @@ instance.interceptors.response.use(
       //清除token
       removeCookie()
       //跳转到登录页
-      window.location.href = "/login"
+			router.replace('/login')
+     // window.location.href = "/login"
     }
 
     // 因为状态码返回有两种情况,一种是正常的code码,401,200,302
@@ -117,8 +120,8 @@ instance.interceptors.response.use(
 )
 
 /**动态拼接代理标识 */
-// instance.adUrl = (url) => {
-//   return process.env.VUE_APP_BASE_API + url
-// }
+instance.adUrl = (url) => {
+  return process.env.VUE_APP_BASE_API + url
+}
 
 export default instance
