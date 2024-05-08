@@ -2,10 +2,11 @@ import Vue from "vue"
 import VueRouter from "vue-router"
 import Layout from "@/layout"
 import http from "@/utils/http"
-import {getToken} from '@/utils/auth'
-
+import {getCookie} from '@/utils/auth'
+import NProgress from 'nprogress' // Progress 进度条
+import 'nprogress/nprogress.css' // Progress 进度条样式
 Vue.use(VueRouter)
-
+NProgress.configure({ showSpinner: false })
 /**
  * 路由:
  * 分为 静态路由
@@ -61,6 +62,8 @@ const homeRoutes = {
 
 /**主入口路由(需嵌套上左右整体布局)
  * 静态布局方式,登录后,无论有没有权限,都能看到首页
+ * 如果不登录,可以直接通过改变路由的形式,进入首页,所以要在路由独享
+ * 守卫中去校验,是否有token,如果没有token,就要跳转到登录页面进行登录
 */
 export const routes = [
   {
@@ -77,6 +80,14 @@ export const routes = [
 			},
 			component: () => import("../views/ShouYe.vue")
 		}],
+		// beforeEnter(to, from, next){
+		// 		let token = getCookie()
+		// 		console.log(token,'token');
+		// 		/**判断token不存在,就让他跳转到登录页面 */
+		// 		if(!token) {
+		// 			next({ name: 'login' })
+		// 		}
+		// }
   },
 ]
 console.log(globalRoutes.concat(routes),'globalRoutes.concat(routes)');
@@ -99,6 +110,12 @@ const router = new VueRouter({
                 "user12345",
                 "attendances"
             ],
+		提前定义一个对象
+		obj = {
+			settings: "首页",
+			social_securitys: "ddd"
+		}
+		obj[item]
  * {
  *   path: "/xxx",
  *   name: "xxxx",
@@ -117,35 +134,82 @@ const router = new VueRouter({
  * 作业: 1.请求接口
  *      2. 把本地文件夹的名称进行修改,并且引入
 */
-router.beforeEach((to,form,next) => {
+// 提前定义中文名字
+const routeObj = {
+	settings: "公司设置",
+	social_securitys: "社保",
+	permissions: "权限设置",
+	approvals: "审批",
+	departments: "部门管理",
+	salarys: "工资",
+	employees: "员工",
+	attendances: "考勤"
+}
 
+/**树形菜单,每一个树形的单独形象 */
+
+function initRoute(menuItem) {
+	return  {
+		path: "/"+ menuItem,
+		name: menuItem,
+		component: () => import(`../views/${menuItem}.vue`),
+		meta: {
+			title: routeObj[menuItem],
+			icon: "el-icon-menu",
+		}
+	}
+}
+
+/**将一维数组处理成我们想要的路由数据格式*/
+function createTreeRoutes(menusList=[], resultMenulits=[]) {
+	for (let index = 0; index < menusList.length; index++) {
+		const item = menusList[index]
+		const element = initRoute(item)
+		resultMenulits.push(element)
+		router.addRoute(element)
+	}
+	/**将首页添加至第一位 */
+	resultMenulits.unshift(homeRoutes)
+	return resultMenulits
+}
+
+router.beforeEach((to,form,next) => {
+	NProgress.start()
 	http.post(http.adUrl('/sys/profile')).then(res => {
 		if(res.code === 10000) {
-			let menuList = res.data.roles.menus
-			/**处理过后的最终的动态路由结果 */
-			const resultMenulits = []
-			for (let index = 0; index < menuList.length; index++) {
-				const item = menuList[index]
-				const element = {
-					path: "/"+ item,
-					name: item,
-					component: () => import(`../views/${item}.vue`),
-					meta: {
-						title: item,
-						icon: "el-icon-menu"
-					}
-				}
-				resultMenulits.push(element)
-			}
-			/**将首页添加至第一位 */
-			resultMenulits.unshift(homeRoutes)
-			console.log("**************");
-			console.log(resultMenulits);
-			console.log("-------------");
-			router.addRoute(resultMenulits)
+			/**获取到最终的处理数据结果,最终的路由信息 */
+			let menuList = createTreeRoutes(res.data.roles.menus)
+			sessionStorage.setItem('resultMenulits',JSON.stringify(menuList))
 		}
+	}).catch( e => {
+		console.log(
+			`%c${e} 请求菜单列表和权限失败，跳转至登录页！！`,
+			'color:blue'
+		)
+		next({ path: '/login' })
+		NProgress.done()
 	})
 	next()
 })
 
+/**全局后置路由守卫钩子 */
+router.afterEach(() => {
+  NProgress.done() // 结束Progress
+})
 export default router
+
+
+
+/**
+ * 路由表的编写
+ * 1. 先声明不需要以侧边栏作为入口的静态路由,比如登录,404,401等页面
+ * 2. 又单独声明了以侧边栏作为入口静态路由,首页
+ * 3. 声明静态主入口路由,routes
+ * 4. 实例化理由,将静态和动态路由,通过concat合并起来
+ * 5. 在前置路由导航钩子中,请求接口,因为后端返回的是一维数组,所以我们需要一维
+ *    数组处理成我们需要的数据格式,处理完成后,使用addRoute的方法,将动态路由
+ *    和静态路由合并起来
+ *
+ *
+ *
+*/
