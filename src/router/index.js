@@ -65,7 +65,7 @@ const homeRoutes = {
  * 如果不登录,可以直接通过改变路由的形式,进入首页,所以要在路由独享
  * 守卫中去校验,是否有token,如果没有token,就要跳转到登录页面进行登录
 */
-export const routes = [
+const routes = [
   {
     path: "/",
     name: "main",
