@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="primary" size="mini" @click="dialogFormVisible = !dialogFormVisible">+ 新增角色</el-button>
+    <el-button type="primary" size="mini" v-if="isAuth('role:add')"  @click="dialogFormVisible = !dialogFormVisible">+ 新增角色</el-button>
     <br />
     <br />
     <el-table :data="tableData" border style="width: 95%" height="400">
@@ -9,9 +9,9 @@
       <el-table-column prop="description" label="描述"> </el-table-column>
       <el-table-column fixed="right" label="操作">
         <template>
-          <el-button type="text" size="small">分配权限</el-button>
-          <el-button type="text" size="small">修改</el-button>
-          <el-button type="text" size="small">删除</el-button>
+          <el-button type="text" size="small" v-if="isAuth('role:put')">分配权限</el-button>
+          <el-button type="text" size="small" v-if="isAuth('role:update')">修改</el-button>
+          <el-button type="text" size="small" v-if="isAuth('role:delete')">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

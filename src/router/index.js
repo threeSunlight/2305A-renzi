@@ -166,20 +166,34 @@ function createTreeRoutes(menusList=[], resultMenulits=[]) {
 		const item = menusList[index]
 		const element = initRoute(item)
 		resultMenulits.push(element)
-		router.addRoute(element)
+		router.addRoute("main",element)
 	}
 	/**将首页添加至第一位 */
 	resultMenulits.unshift(homeRoutes)
 	return resultMenulits
 }
 
+
+/**
+ * 按钮显示与隐藏: v-if,v-show
+ * 封装公共方法,方法名叫isAuth()
+ * 1. 封装一个函数方法,判断传入的权限按钮标识,是否包含在当前数组中,如果包含,就返回true,不包含返回false
+ * 2. 封装一个自定义指令,在指令去控制dom元素的显隐藏,根本也是判断当前传入的标识,是否包含在当前数组中
+ *
+*/
 router.beforeEach((to,form,next) => {
 	NProgress.start()
 	http.post(http.adUrl('/sys/profile')).then(res => {
 		if(res.code === 10000) {
+			res.data.roles.permissions = ['role:add', 'role:update', 'role:put', 'user:export']
+
 			/**获取到最终的处理数据结果,最终的路由信息 */
 			let menuList = createTreeRoutes(res.data.roles.menus)
+
+			// roles: ['user:list', 'user:add']
 			sessionStorage.setItem('resultMenulits',JSON.stringify(menuList))
+			/**储存权限标识 */
+			sessionStorage.setItem("permissions",JSON.stringify(res.data.roles.permissions))
 		}
 	}).catch( e => {
 		console.log(

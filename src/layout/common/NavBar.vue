@@ -22,7 +22,7 @@
 
 <script>
 import { EventBus } from "@/eventbus"
-
+import router from '@/router'
 export default {
   data() {
     return {

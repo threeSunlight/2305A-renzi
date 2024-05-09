@@ -3,6 +3,7 @@ import App from "./App.vue"
 import router from "./router"
 import store from "./store"
 import "@/icons"
+import {isAuth} from '@/utils'
 
 // import http from "./utils/http"
 // Vue.prototype.$http = http
@@ -16,6 +17,11 @@ ElementLocale.i18n((key, value) => i18n.t(key, value))
 // 把i18注册到Vue实例上
 
 Vue.config.productionTip = false
+
+// 挂载原型链上
+Vue.prototype.isAuth = isAuth
+
+
 import {
   Dropdown,
   DropdownItem,
